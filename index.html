@@ -13,11 +13,15 @@
 }
 @keyframes inicio1{
     from{transform: translateX(0) ;}
-    to{transform: translateX(-50vw) rotate(-90deg) ;}
+    to{transform: translateX(-50vw) rotate(-90deg);border-radius: 50%}
 }
 @keyframes inicio2{
     from{transform: translateX(0) ;}
-    to{transform: translateX(50vw) rotate(90deg);}
+    to{transform: translateX(50vw) rotate(90deg);border-radius: 50%;}
+}
+@keyframes desvanecer{
+    from{opacity: 100%;}
+    to{opacity: 0%;}
 }
 .inicio{
     width: 100vw;
@@ -33,7 +37,7 @@
     height: auto;
     text-align: center;
     color: #fff;
-    
+    animation-duration: 0.3s;
 }
 .titulo{
     font-size: 80px;
@@ -64,11 +68,13 @@
 }
 .inicio1{
     
-    animation-duration: 2s;
+    animation-duration: 1s;
+    animation-timing-function:ease-in ;
 }
 .inicio2{
     
-    animation-duration: 2s;
+    animation-duration: 1s;
+    animation-timing-function:ease-in ;
 }
 .name{
     margin: 20px;
@@ -264,18 +270,21 @@ tablero.addEventListener("click",function(e){
 })
 
 function comenzar(){
+    document.querySelector('.inicioTexto').style.animationName = 'desvanecer';
+
+
+document.querySelector('.inicioTexto').addEventListener('animationend',function(){
+    document.querySelector('.inicioTexto').style.display = 'none';
     inicio1.style.animationName = 'inicio1';
     inicio2.style.animationName = 'inicio2';
-    document.querySelector('.inicioTexto').style.display = 'none'
-}
+})
 
 let inicio1 = document.getElementById('inicio1');
-    let inicio2 = document.getElementById('inicio2');
-    inicio1.addEventListener('animationend',function(){
-        inicio1.style.display = "none";
-        inicio2.style.display = "none";
-    })
-
+let inicio2 = document.getElementById('inicio2');
+inicio1.addEventListener('animationend',function(){
+    document.querySelector('.inicio').style.display = 'none'
+})
+}
 </script>
 </body>
 </html>
